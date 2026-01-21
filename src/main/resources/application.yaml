@@ -4,6 +4,10 @@ server:
     context-path: /api
 
 spring:
+  security:
+    user:
+      name: admin
+      password: admin
   datasource:
     url: ${POSTGRES_URL}
     username: ${POSTGRES_USER}
@@ -11,7 +15,7 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
     show-sql: true
     properties:
       hibernate:
@@ -20,8 +24,9 @@ spring:
 
 logging:
   level:
-    org.springframework.web: INFO
+    root: INFO
     org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
 
 management:
   endpoints:
