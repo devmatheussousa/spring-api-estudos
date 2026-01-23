@@ -1,4 +1,4 @@
-package com.example.spring_api_estudos.$02_Projeto_Blog_Inteligente.domain;
+package com.example.spring_api_estudos.$02_Projeto_Blog_Inteligente.domain.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
