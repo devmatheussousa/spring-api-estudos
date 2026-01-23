@@ -6,6 +6,7 @@ import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "categorias")
@@ -27,6 +28,9 @@ public class Categoria {
 
     @Column(length = 100)
     private String descricao;
+
+    @ManyToMany(mappedBy = "categorias")
+    private List<Post> posts;
 
     @CreationTimestamp
     @Column(name = "data_criacao", nullable = false, updatable = false)

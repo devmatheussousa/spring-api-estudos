@@ -19,6 +19,14 @@ public class Comentario {
     @Column(nullable = false, columnDefinition = "TEXT")
     private String conteudo;
 
+    @ManyToOne
+    @JoinColumn(name = "autor_id", nullable = false)
+    private Usuario autor;
+
+    @ManyToOne
+    @JoinColumn(name = "post_id", nullable = false)
+    private Post post;
+
     @CreationTimestamp
     @Column(name = "data_criacao", nullable = false, updatable = false)
     private LocalDateTime dataCriacao;

@@ -8,6 +8,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "post")
@@ -38,6 +39,21 @@ public class Post {
 
     @Column(name = "visualizacoes", nullable = false)
     private Integer visualizacoes = 0;
+
+    @ManyToOne // Relacionamento muitos para um com a entidade Usuario
+    @JoinColumn(name = "autor_id", nullable = false) // Cria uma coluna autor_id na tabela post que referencia a chave primária da tabela usuario
+    private Usuario autor;
+
+    @ManyToMany
+    @JoinTable(
+            name = "post_categorias",
+            joinColumns = @JoinColumn(name = "post_id"),
+            inverseJoinColumns = @JoinColumn(name = "categoria_id")
+    )
+    private List<Categoria> categorias;
+
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Comentario> comentarios;
 
     @CreationTimestamp
     @Column(name = "data_criacao", nullable = false, updatable = false)
